@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body style="text-align: center">
+    <h1><a href="/">Homepage</a></h1>
+    <h4>Welcome to the homepage of concept clearing app</h4>
+    <h4><a href="/conceptapp/context/">Go To DTL</a></h4>
+    <h2>Got the d value : {{name}}</h2>
+    {% for i in list %} {% if i == "sakib" %}
+    <h2>{{i}} is good</h2>
+    {%endif%}
+    <h2 style="display: inline; padding-right: 5px">{{i}}</h2>
+    {%endfor%}
+  </body>
+</html>

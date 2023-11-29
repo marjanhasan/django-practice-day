@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body style="text-align: center">
+    <h1><a href="/">Homepage</a></h1>
+    <h4>Welcome to the Django Template Filtering Language page</h4>
+    <h4 style="text-align: center"><a href="/conceptapp/">Concept app</a></h4>
+    <ol>
+      <li>{{letters | length}}</li>
+      <li>{{num | add:"8"}}</li>
+      <li>{{greetings | addslashes}}</li>
+      <li>{{name | capfirst}}</li>
+      <li>{{quotes | lower}}</li>
+      <li>{{quotes | make_list}}</li>
+      <li>{{name | center:"15"}}</li>
+      <li>{{quotes | cut:" "}}</li>
+      <li>{{status | default:"Goribs"}}</li>
+      <li>{{guys | dictsort:"name"}}</li>
+      <li>{{ num | divisibleby:"2"}}</li>
+      <li>{{file | filesizeformat}}</li>
+      <li>{{letters | first}}</li>
+      <li>{{letters | last}}</li>
+      <li>{{letters | join:' / / '}}</li>
+      <li>{{letters | random}}</li>
+      <li>{{letters | slice:'2'}}</li>
+      <li>{{quotes | slugify}}</li>
+      <li>{{greetings | title}}</li>
+      <li>{{letters | unordered_list}}</li>
+      <li>{{quotes | upper}}</li>
+      <li>{{quotes | wordcount}}</li>
+      <li>{{quotes | truncatechars:"2"}}</li>
+      <li>{{quotes | truncatewords:"1"}}</li>
+    </ol>
+  </body>
+</html>
