@@ -21,9 +21,9 @@ from . import views
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", views.home, name="homepage"),
-    path("edit_album/<int:id>", views.edit_album, name="edit_album"),
-    path("edit_musician/<int:id>", views.edit_musician, name="edit_musician"),
-    path("delete/<int:id>", views.delete_row, name="delete"),
+    path("edit_album/<int:id>", views.EditAlbum.as_view(), name="edit_album"),
+    path("edit_musician/<int:id>", views.EditMusician.as_view(), name="edit_musician"),
+    path("delete/<int:id>", views.DeleteRow.as_view(), name="delete"),
     path("album/", include("album.urls")),
     path("musician/", include("musician.urls")),
 ]

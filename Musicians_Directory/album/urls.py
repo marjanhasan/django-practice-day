@@ -1,4 +1,4 @@
 from django.urls import path
 from . import views
 
-urlpatterns = [path("", views.album, name="add_album")]
+urlpatterns = [path("", views.AddAlbum.as_view(), name="add_album")]

@@ -1,14 +1,14 @@
-from django.shortcuts import render, redirect
 from . import forms
+from . import models
+from django.views.generic import CreateView
+from django.urls import reverse_lazy
 
 
-# Create your views here.
-def musician(request):
-    if request.method == "POST":
-        musicianForm = forms.MusicianForm(request.POST)
-        if musicianForm.is_valid():
-            musicianForm.save()
-            return redirect("add_musician")
-    else:
-        musicianForm = forms.MusicianForm()
-    return render(request, "musician.html", {"form": musicianForm})
+class AddMusician(CreateView):
+    model = models.Musician
+    form_class = forms.MusicianForm
+    template_name = "musician.html"
+    success_url = reverse_lazy("add_musician")
+
+    def form_valid(self, form):
+        return super().form_valid(form)

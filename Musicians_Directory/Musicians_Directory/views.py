@@ -1,8 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from album.models import Album
 from album.forms import AlbumForm
 from musician.models import Musician
 from musician.forms import MusicianForm
+from django.views.generic import UpdateView, DeleteView
+from django.urls import reverse_lazy
 
 
 def home(request):
@@ -10,29 +12,24 @@ def home(request):
     return render(request, "index.html", {"data": data})
 
 
-def edit_album(request, id):
-    album = Album.objects.get(pk=id)
-    albumForm = AlbumForm(instance=album)
-    if request.method == "POST":
-        albumForm = AlbumForm(request.POST, instance=album)
-        if albumForm.is_valid():
-            albumForm.save()
-            return redirect("homepage")
-    return render(request, "album.html", {"form": albumForm})
+class EditAlbum(UpdateView):
+    model = Album
+    form_class = AlbumForm
+    template_name = "album.html"
+    pk_url_kwarg = "id"
+    success_url = reverse_lazy("homepage")
 
 
-def edit_musician(request, id):
-    musician = Musician.objects.get(pk=id)
-    musicianForm = MusicianForm(instance=musician)
-    if request.method == "POST":
-        musicianForm = MusicianForm(request.POST, instance=musician)
-        if musicianForm.is_valid():
-            musicianForm.save()
-            return redirect("homepage")
-    return render(request, "musician.html", {"form": musicianForm})
+class EditMusician(UpdateView):
+    model = Musician
+    form_class = MusicianForm
+    template_name = "musician.html"
+    pk_url_kwarg = "id"
+    success_url = reverse_lazy("homepage")
 
 
-def delete_row(request, id):
-    album = Album.objects.get(pk=id)
-    album.delete()
-    return redirect("homepage")
+class DeleteRow(DeleteView):
+    model = Album
+    template_name = "delete.html"
+    pk_url_kwarg = "id"
+    success_url = reverse_lazy("homepage")

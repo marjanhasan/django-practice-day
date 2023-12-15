@@ -1,4 +1,4 @@
 from django.urls import path
 from . import views
 
-urlpatterns = [path("", views.musician, name="add_musician")]
+urlpatterns = [path("", views.AddMusician.as_view(), name="add_musician")]

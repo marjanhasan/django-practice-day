@@ -1,14 +1,15 @@
-from django.shortcuts import render, redirect
 from . import forms
+from . import models
+from django.views.generic import CreateView
+from django.urls import reverse_lazy
 
 
-# Create your views here.
-def album(request):
-    if request.method == "POST":
-        albumForm = forms.AlbumForm(request.POST)
-        if albumForm.is_valid():
-            albumForm.save()
-            return redirect("add_album")
-    else:
-        albumForm = forms.AlbumForm()
-    return render(request, "album.html", {"form": albumForm})
+class AddAlbum(CreateView):
+    model = models.Album
+    form_class = forms.AlbumForm
+    template_name = "album.html"
+    success_url = reverse_lazy("add_album")
+
+    def form_valid(self, form):
+        form.instance.release = self.request.user
+        return super().form_valid(form)
